@@ -43,9 +43,14 @@ products.push(results[0].product); //result是一個陣列 result[0]是物件(ob
 id.push(results[0].id); //id也是一個陣列 id.push()意思是把東西放進這個陣列裡面
 price.push(results[0].price);
 res.json(results); //顯示result result是陣列裡面放物件
+
+
 }
 }
 ); // close connect
+
+
+
 
 connection.end(); //結束連線
 } catch (error) {
@@ -130,13 +135,21 @@ ${result}
 </body>
 </html>`);
 
+
+
+
+
 });
 
 app.get('/clear' , function (req, res) {
 products.length = 0; //product是個陣列，讓他長度變0就是清空這個陣列的內容
 id.length = 0;
 total=0
+price.length=0;
 res.send('清空了');
+
+
+
 });
 
 const PORT = process.env.PORT || 8080;
