@@ -6,7 +6,7 @@ var total = 0;
 var products = [];
 var id = [];
 var price = [];
-
+var finalnumber=0;
 // 顯示版本號
 app.get('/', (req, res) => {
 res.send(require('./package.json').version);
@@ -38,7 +38,7 @@ console.log(error);
 res.send('no data'); //顯示nodata
 } else {
 total += Number.parseInt(results[0].price); // number.parseInt()把它的型態轉成數字
-
+finalnumber+=1;
 products.push(results[0].product); //result是一個陣列 result[0]是物件(object)大陸翻譯對象 然後java腳本的陣列可以放字串
 id.push(results[0].id); //id也是一個陣列 id.push()意思是把東西放進這個陣列裡面
 price.push(results[0].price);
@@ -120,7 +120,26 @@ if (i == 0) break;
 }
 
 result += '<hr style="border-color: #000;">'
-result += `<div class="row"><div class="col">總價: ${finalTotal} $</div></div>`; //res.json 意思跟res.send和res.end很像都是顯示
+result += 
+`<div class="row" >
+<div style="color:transparent">
+'hhh'
+</div>
+<div class="col-9" >
+
+總數:${finalnumber}
+
+</div>
+
+
+
+<div class="col" >
+
+總價: ${finalTotal} $
+
+</div>
+
+</div>`; //res.json 意思跟res.send和res.end很像都是顯示
 
 res.send(`<!DOCTYPE html>
 <html>
@@ -129,7 +148,7 @@ res.send(`<!DOCTYPE html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body style="height: calc(100vh - 40px);background: #ddd;margin: 20px;">
-<div class="container" style="text-align: right;min-height: 50vh;background: #fff;box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.13);padding: 30px;">
+<div class="container" style="text-align:right;min-height: 50vh;    background: #fff;box-shadow: 12px 12px 7px rgba(0, 0, 0, 0.13);padding: 30px;">
 ${result}
 <div>
 </body>
@@ -146,6 +165,7 @@ products.length = 0; //product是個陣列，讓他長度變0就是清空這個�
 id.length = 0;
 total=0
 price.length=0;
+finalnumber=0;
 res.send('清空了');
 
 
